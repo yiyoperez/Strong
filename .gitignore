@@ -1,0 +1,8 @@
+.idea/
+target/
+Strong.iml
+
+*.*/target/
+*.*/*.iml
+
+jars/
