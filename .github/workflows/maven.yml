@@ -26,5 +26,5 @@ jobs:
       with:
         name: Strong-Artifacts
         path: |
-          Strong/jars/String-*.jar
-          jars/String-*.jar
+          Strong/jars/Strong-*.jar
+          jars/Strong-*.jar

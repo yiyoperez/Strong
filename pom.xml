@@ -11,7 +11,7 @@
 
     <modules>
         <module>Common</module>
-        <module>String-Proxy</module>
+        <module>Strong-Proxy</module>
         <module>Strong-Bukkit</module>
     </modules>
 
@@ -39,5 +39,12 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>LATEST</version>
+            <scope>provided</scope>
+        </dependency>
+
     </dependencies>
 </project>

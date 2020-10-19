@@ -1,0 +1,7 @@
+# Strong Bukkit language file.
+
+NO_PERMISSIONS: '&cYou have no permissions to perform that.'
+COOLDOWN_ACTIVE: '&cPlease wait another $INTERVAL to use this again.'
+CLICK_MESSAGE: '&aClick to come watch $PLAYER''s livestream.'
+HOVER_MESSAGE: '&c[LIVE] &e&l$PLAYER &6is livestreaming!'
+SUCCESSFULLY: '&aYou have successfully sent the message to the server.'

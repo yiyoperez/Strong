@@ -1,0 +1,10 @@
+#  ,_,
+# (o,o)  STRONG
+# {'"'}
+# -"-"-  Developed by Sliide_
+
+# This is in seconds.
+COMMAND_COOLDOWN: 30
+
+# Should the player send his own message?
+ALLOW_MESSAGE: true

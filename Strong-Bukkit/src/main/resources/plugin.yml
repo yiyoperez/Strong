@@ -1,0 +1,10 @@
+name: Strong
+main: com.strixmc.strong.Strong
+version: 1.0.0
+author: Sainted
+api-version: 1.13
+
+permissions:
+  strong.bypass.cooldown:
+    description: Permission to bypass streaming command cooldown.
+    default: false
