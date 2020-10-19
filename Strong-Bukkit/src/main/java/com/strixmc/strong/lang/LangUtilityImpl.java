@@ -13,15 +13,19 @@ public class LangUtilityImpl implements LangUtility {
   private FileCreator lang;
 
   @Getter String noPermissions;
+  @Getter String usage;
   @Getter String cooldownActive;
   @Getter String clickMessage;
   @Getter String hoverMessage;
   @Getter String successfully;
+  @Getter String validURL;
 
   @Override
   public void updateMessages() {
     lang = new FileCreator(main, "lang", ".yml");
 
+    this.usage = lang.getString("USAGE");
+    this.validURL = lang.getString("VALID_URL");
     this.noPermissions = lang.getString("NO_PERMISSIONS");
     this.cooldownActive = lang.getString("COOLDOWN_ACTIVE");
     this.clickMessage = lang.getString("CLICK_MESSAGE");

@@ -6,6 +6,10 @@ public interface LangUtility {
 
   String getNoPermissions();
 
+  String getUsage();
+
+  String getValidURL();
+
   String getCooldownActive(String value);
 
   String getClickMessage(String playerName);

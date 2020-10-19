@@ -1,5 +1,7 @@
 # Strong Bukkit language file.
 
+VALID_URL: '&cPlease provide a valid URL.'
+USAGE: '/<command> <link> [message]'
 NO_PERMISSIONS: '&cYou have no permissions to perform that.'
 COOLDOWN_ACTIVE: '&cPlease wait another $INTERVAL to use this again.'
 CLICK_MESSAGE: '&aClick to come watch $PLAYER''s livestream.'
