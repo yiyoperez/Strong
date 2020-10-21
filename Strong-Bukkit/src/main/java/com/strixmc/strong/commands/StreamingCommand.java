@@ -32,7 +32,7 @@ public class StreamingCommand implements CommandClass {
   @Command(names = {"livestream", "live", "streaming", "stream", "directo"})
   public boolean command(@Sender Player player, @OptArg String link, @OptArg @Text String message, CommandContext context) {
 
-    if (!player.hasPermission("string.command.streaming")) {
+    if (!player.hasPermission("strong.command.streaming")) {
       player.sendMessage(lang.getNoPermissions());
       return true;
     }
