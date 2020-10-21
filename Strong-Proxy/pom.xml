@@ -47,7 +47,7 @@
         </dependency>
         <dependency>
             <groupId>org.bstats</groupId>
-            <artifactId>bstats-bungeecord</artifactId>
+            <artifactId>bstats-bungeecord-lite</artifactId>
             <version>1.7</version>
             <scope>compile</scope>
         </dependency>
@@ -75,7 +75,7 @@
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>2.3.1</version>
                 <configuration>
-                    <outputDirectory>C:\Users\pc\Desktop\Test Server\Proxy\plugins</outputDirectory>
+                    <outputDirectory>../jars</outputDirectory>
                 </configuration>
             </plugin>
             <plugin>

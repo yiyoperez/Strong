@@ -9,6 +9,7 @@ import com.strixmc.proxystrong.utils.FileManager;
 import com.strixmc.proxystrong.utils.settings.Settings;
 import lombok.Getter;
 import net.md_5.bungee.api.plugin.Plugin;
+import org.bstats.bungeecord.MetricsLite;
 
 public class Strong extends Plugin {
 
@@ -19,6 +20,8 @@ public class Strong extends Plugin {
 
   @Override
   public void onEnable() {
+    new MetricsLite(this, 9163);
+
     BinderModule binderModule = new BinderModule(this);
     Injector injector = binderModule.createInjector();
     injector.injectMembers(this);
