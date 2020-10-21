@@ -6,7 +6,9 @@ import com.google.inject.name.Named;
 import com.strixmc.common.loader.Loader;
 import com.strixmc.strong.utils.BinderModule;
 import com.strixmc.strong.utils.ConfigUpdater;
+import com.strixmc.strong.utils.settings.Settings;
 import lombok.SneakyThrows;
+import org.bstats.bukkit.MetricsLite;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -16,24 +18,27 @@ public class Strong extends JavaPlugin {
 
   @Inject @Named("LangLoader") Loader langLoader;
   @Inject @Named("CommandsLoader") Loader commandsLoader;
-  @Inject private Strong main;
+  @Inject private Settings settings;
 
   @Override
   public void onEnable() {
+    new MetricsLite(this, 9149);
+
     BinderModule binderModule = new BinderModule(this);
     Injector injector = binderModule.createInjector();
     injector.injectMembers(this);
 
     createConfig();
 
+    settings.updateSettings();
     langLoader.load();
     commandsLoader.load();
   }
 
   @SneakyThrows
   private void createConfig() {
-    main.saveDefaultConfig();
-    ConfigUpdater.update(main, "config.yml", new File(main.getDataFolder().getAbsolutePath(), "config.yml"), Arrays.asList("NOTHING", "YET"));
-    main.reloadConfig();
+    saveDefaultConfig();
+    ConfigUpdater.update(this, "config.yml", new File(getDataFolder().getAbsolutePath(), "config.yml"), Arrays.asList("ALLOWED_URLS"));
+    reloadConfig();
   }
 }

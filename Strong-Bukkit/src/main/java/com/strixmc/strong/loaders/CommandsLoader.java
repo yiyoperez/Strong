@@ -5,6 +5,7 @@ import com.google.inject.Singleton;
 import com.strixmc.strong.Strong;
 import com.strixmc.strong.commands.StreamingCommand;
 import com.strixmc.common.loader.Loader;
+import com.strixmc.strong.commands.StrongCommand;
 import me.fixeddev.commandflow.CommandManager;
 import me.fixeddev.commandflow.annotated.AnnotatedCommandTreeBuilder;
 import me.fixeddev.commandflow.annotated.AnnotatedCommandTreeBuilderImpl;
@@ -18,6 +19,7 @@ public class CommandsLoader implements Loader {
 
   @Inject private Strong main;
   @Inject private StreamingCommand streamingCommand;
+  @Inject private StrongCommand strongCommand;
 
   @Override
   public void load() {
@@ -28,5 +30,6 @@ public class CommandsLoader implements Loader {
     AnnotatedCommandTreeBuilder builder = new AnnotatedCommandTreeBuilderImpl(injector);
 
     commandManager.registerCommands(builder.fromClass(streamingCommand));
+    commandManager.registerCommands(builder.fromClass(strongCommand));
   }
 }

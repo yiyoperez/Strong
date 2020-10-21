@@ -13,6 +13,8 @@ import com.strixmc.strong.lang.LangUtility;
 import com.strixmc.strong.lang.LangUtilityImpl;
 import com.strixmc.strong.loaders.CommandsLoader;
 import com.strixmc.strong.loaders.LangLoader;
+import com.strixmc.strong.utils.settings.Settings;
+import com.strixmc.strong.utils.settings.SettingsImpl;
 
 import java.util.UUID;
 
@@ -34,6 +36,7 @@ public class BinderModule extends AbstractModule {
     }).toInstance(new BaseCache<>());
 
     bind(LangUtility.class).to(LangUtilityImpl.class);
+    bind(Settings.class).to(SettingsImpl.class);
 
     bind(Loader.class).annotatedWith(Names.named("CommandsLoader")).to(CommandsLoader.class);
     bind(Loader.class).annotatedWith(Names.named("LangLoader")).to(LangLoader.class);

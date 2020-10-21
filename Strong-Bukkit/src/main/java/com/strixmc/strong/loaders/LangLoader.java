@@ -12,6 +12,7 @@ public class LangLoader implements Loader {
 
   @Override
   public void load() {
+    langUtility.createLang();
     langUtility.updateMessages();
   }
 }

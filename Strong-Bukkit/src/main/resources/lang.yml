@@ -1,9 +1,34 @@
-# Strong Bukkit language file.
+#  ,_,
+# (o,o)  STRONG LANGUAGE FILE
+# {'"'}
+# -"-"-
 
 VALID_URL: '&cPlease provide a valid URL.'
 USAGE: '/<command> <link> [message]'
 NO_PERMISSIONS: '&cYou have no permissions to perform that.'
 COOLDOWN_ACTIVE: '&cPlease wait another $INTERVAL to use this again.'
 CLICK_MESSAGE: '&aClick to come watch $PLAYER''s livestream.'
-HOVER_MESSAGE: '&c[LIVE] &e&l$PLAYER &6is livestreaming!'
+CLICK_HERE: '&aClick here to enter the live!'
+HOVER_MESSAGE:
+  - ''
+  - '&c[LIVE] &e&l$PLAYER &6is livestreaming!'
+  - ''
 SUCCESSFULLY: '&aYou have successfully sent the message to the server.'
+
+SUCCESSFULLY_RELOAD: '&aPlugin has been successfully reloaded.'
+
+YEAR: 'year'
+YEARS: 'years'
+MONTH: 'month'
+MONTHS: 'months'
+WEEK: 'week'
+WEEKS: 'weeks'
+DAY: 'day'
+DAYS: 'days'
+HOUR: 'hour'
+HOURS: 'hours'
+MINUTE: 'minute'
+MINUTES: 'minutes'
+SECOND: 'second'
+SECONDS: 'seconds'
+NOW: 'now'

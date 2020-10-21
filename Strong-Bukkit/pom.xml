@@ -39,7 +39,7 @@
         <!--bStats-->
         <dependency>
             <groupId>org.bstats</groupId>
-            <artifactId>bstats-bukkit</artifactId>
+            <artifactId>bstats-bukkit-lite</artifactId>
             <version>1.7</version>
             <scope>compile</scope>
         </dependency>
@@ -59,6 +59,13 @@
             <groupId>me.fixeddev</groupId>
             <artifactId>commandflow-bukkit</artifactId>
             <version>0.1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.jetbrains</groupId>
+                    <artifactId>annotations</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 
@@ -85,21 +92,33 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>3.2.4</version>
+                <configuration>
+                    <relocations>
+                        <relocation>
+                            <pattern>javax</pattern>
+                            <shadedPattern>com.google.inject</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>me.fixeddev.commandflow</pattern>
+                            <shadedPattern>com.strixmc.commandmanager</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>net.kyori.text</pattern>
+                            <shadedPattern>com.strixmc.commandmanager</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>org.bstats.bukkit</pattern>
+                            <shadedPattern>com.strixmc.metrics</shadedPattern>
+                        </relocation>
+                    </relocations>
+                    <createDependencyReducedPom>false</createDependencyReducedPom>
+                </configuration>
                 <executions>
                     <execution>
                         <phase>package</phase>
                         <goals>
                             <goal>shade</goal>
                         </goals>
-                        <configuration>
-                            <relocations>
-                                <relocation>
-                                    <pattern>org.bstats</pattern>
-                                    <shadedPattern>com.strixmc.metrics</shadedPattern>
-                                </relocation>
-                            </relocations>
-                            <createDependencyReducedPom>false</createDependencyReducedPom>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
