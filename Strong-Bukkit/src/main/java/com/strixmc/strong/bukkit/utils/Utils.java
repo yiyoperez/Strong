@@ -16,8 +16,8 @@ public class Utils {
   private final static int CENTER_PX = 154;
   @Inject private LangUtility lang;
 
-  public boolean matchPattern(String link) {
-    final Pattern pattern = Pattern.compile("(?i)(" + link + "(?!x)x)");
+  public boolean matchPattern(String patternString, String link) {
+    final Pattern pattern = Pattern.compile("(?i)(" + patternString + "(?!x)x)");
     final Matcher matcher = pattern.matcher(link);
     return matcher.find();
   }

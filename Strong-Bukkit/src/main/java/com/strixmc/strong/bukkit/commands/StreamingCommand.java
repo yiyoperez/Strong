@@ -1,8 +1,8 @@
 package com.strixmc.strong.bukkit.commands;
 
 import com.google.inject.Inject;
-import com.strixmc.strong.bukkit.lang.LangUtility;
 import com.strixmc.common.cache.Cache;
+import com.strixmc.strong.bukkit.lang.LangUtility;
 import com.strixmc.strong.bukkit.utils.Utils;
 import com.strixmc.strong.bukkit.utils.settings.Settings;
 import me.fixeddev.commandflow.CommandContext;
@@ -44,7 +44,7 @@ public class StreamingCommand implements CommandClass {
       for (String s : settings.getAllowedURLS()) {
         patternString = String.format("%s(%s)|", patternString, s);
       }
-      if (!utils.matchPattern(patternString)) {
+      if (!utils.matchPattern(patternString, link)) {
         player.sendMessage(lang.getValidURL());
         return true;
       }
