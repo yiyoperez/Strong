@@ -1,4 +1,4 @@
 name: Strong
-main: com.strixmc.strong.StrongProxy
+main: com.strixmc.proxystrong.Strong
 version: 1.0.0
 author: Sainted

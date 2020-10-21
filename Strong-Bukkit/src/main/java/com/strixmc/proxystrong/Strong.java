@@ -1,12 +1,12 @@
-package com.strixmc.strong;
+package com.strixmc.proxystrong;
 
 import com.google.inject.Inject;
 import com.google.inject.Injector;
 import com.google.inject.name.Named;
 import com.strixmc.common.loader.Loader;
-import com.strixmc.strong.utils.BinderModule;
-import com.strixmc.strong.utils.ConfigUpdater;
-import com.strixmc.strong.utils.settings.Settings;
+import com.strixmc.proxystrong.utils.BinderModule;
+import com.strixmc.proxystrong.utils.ConfigUpdater;
+import com.strixmc.proxystrong.utils.settings.Settings;
 import lombok.SneakyThrows;
 import org.bstats.bukkit.MetricsLite;
 import org.bukkit.plugin.java.JavaPlugin;

@@ -1,0 +1,22 @@
+#  ,_,
+# (o,o)  STRONG
+# {'"'}
+# -"-"-  Developed by Sliide_
+
+# This is in seconds.
+COMMAND_COOLDOWN: 30
+
+# Should the player send his own message?
+ALLOW_CUSTOM_MESSAGE: true
+
+# Center announcement messages?
+CENTER_MESSAGES: true
+
+# Player will be only allowed to post these websites.
+ALLOWED_URLS:
+  - 'https://www.youtube.com/'
+  - 'https://youtu.be/'
+  - 'https://www.twitch.tv/'
+  - 'https://www.nimo.tv/'
+  - 'https://www.facebook.com/'
+  - 'https://www.facebook.com/watch/'

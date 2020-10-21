@@ -1,4 +1,4 @@
-package com.strixmc.strong.utils.settings;
+package com.strixmc.proxystrong.utils.settings;
 
 import java.util.List;
 

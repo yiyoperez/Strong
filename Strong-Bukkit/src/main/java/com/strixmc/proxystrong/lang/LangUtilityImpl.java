@@ -1,10 +1,10 @@
-package com.strixmc.strong.lang;
+package com.strixmc.proxystrong.lang;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import com.strixmc.strong.Strong;
-import com.strixmc.strong.utils.ConfigUpdater;
-import com.strixmc.strong.utils.Utils;
+import com.strixmc.proxystrong.Strong;
+import com.strixmc.proxystrong.utils.ConfigUpdater;
+import com.strixmc.proxystrong.utils.Utils;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -20,32 +20,32 @@ import java.util.List;
 @Singleton
 public class LangUtilityImpl implements LangUtility {
 
-  @Getter String noPermissions;
-  @Getter String usage;
-  @Getter String cooldownActive;
-  @Getter String clickMessage;
-  @Getter String clickHere;
-  @Getter List<String> hoverMessage;
-  @Getter String successfully;
-  @Getter String validURL;
+  @Getter private String noPermissions;
+  @Getter private String usage;
+  @Getter private String cooldownActive;
+  @Getter private String clickMessage;
+  @Getter private String clickHere;
+  @Getter private List<String> hoverMessage;
+  @Getter private String successfully;
+  @Getter private String validURL;
 
-  @Getter String successfullyReload;
+  @Getter private String successfullyReload;
 
-  @Getter String year;
-  @Getter String years;
-  @Getter String month;
-  @Getter String months;
-  @Getter String week;
-  @Getter String weeks;
-  @Getter String day;
-  @Getter String days;
-  @Getter String hour;
-  @Getter String hours;
-  @Getter String minute;
-  @Getter String minutes;
-  @Getter String second;
-  @Getter String seconds;
-  @Getter String now;
+  @Getter private String year;
+  @Getter private String years;
+  @Getter private String month;
+  @Getter private String months;
+  @Getter private String week;
+  @Getter private String weeks;
+  @Getter private String day;
+  @Getter private String days;
+  @Getter private String hour;
+  @Getter private String hours;
+  @Getter private String minute;
+  @Getter private String minutes;
+  @Getter private String second;
+  @Getter private String seconds;
+  @Getter private String now;
 
   @Inject private Strong main;
   @Inject private Utils utils;

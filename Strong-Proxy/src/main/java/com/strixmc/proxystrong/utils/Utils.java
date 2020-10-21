@@ -1,18 +1,26 @@
-package com.strixmc.strong.utils;
+package com.strixmc.proxystrong.utils;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import com.strixmc.strong.lang.LangUtility;
-import org.bukkit.ChatColor;
-import org.bukkit.entity.Player;
+import com.strixmc.proxystrong.lang.LangUtility;
+import net.md_5.bungee.api.ChatColor;
+import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Singleton
 public class Utils {
 
   private final static int CENTER_PX = 154;
   @Inject private LangUtility lang;
+
+  public boolean matchPattern(String patternString, String link) {
+    final Pattern pattern = Pattern.compile("(?i)(" + patternString + "(?!x)x)");
+    final Matcher matcher = pattern.matcher(link);
+    return matcher.find();
+  }
 
   public String translate(String text) {
     return ChatColor.translateAlternateColorCodes('&', text);
@@ -64,13 +72,9 @@ public class Utils {
     for (char c : message.toCharArray()) {
       if (c == '§') {
         previousCode = true;
-        continue;
-      } else if (previousCode == true) {
+      } else if (previousCode) {
         previousCode = false;
-        if (c == 'l' || c == 'L') {
-          isBold = true;
-          continue;
-        } else isBold = false;
+        isBold = c == 'l' || c == 'L';
       } else {
         DefaultFontInfo dFI = DefaultFontInfo.getDefaultFontInfo(c);
         messagePxSize += isBold ? dFI.getBoldLength() : dFI.getLength();
@@ -90,40 +94,7 @@ public class Utils {
     return sb.toString() + message;
   }
 
-  public void sendCenteredMessage(Player player, String message) {
-    if (message == null || message.equals("")) player.sendMessage("");
-    message = ChatColor.translateAlternateColorCodes('&', message);
-
-    int messagePxSize = 0;
-    boolean previousCode = false;
-    boolean isBold = false;
-
-    for (char c : message.toCharArray()) {
-      if (c == '§') {
-        previousCode = true;
-        continue;
-      } else if (previousCode == true) {
-        previousCode = false;
-        if (c == 'l' || c == 'L') {
-          isBold = true;
-          continue;
-        } else isBold = false;
-      } else {
-        DefaultFontInfo dFI = DefaultFontInfo.getDefaultFontInfo(c);
-        messagePxSize += isBold ? dFI.getBoldLength() : dFI.getLength();
-        messagePxSize++;
-      }
-    }
-
-    int halvedMessageSize = messagePxSize / 2;
-    int toCompensate = CENTER_PX - halvedMessageSize;
-    int spaceLength = DefaultFontInfo.SPACE.getLength() + 1;
-    int compensated = 0;
-    StringBuilder sb = new StringBuilder();
-    while (compensated < toCompensate) {
-      sb.append(" ");
-      compensated += spaceLength;
-    }
-    player.sendMessage(sb.toString() + message);
+  public void sendCenteredMessage(ProxiedPlayer player, String message) {
+    player.sendMessage(centerMessage(message));
   }
 }

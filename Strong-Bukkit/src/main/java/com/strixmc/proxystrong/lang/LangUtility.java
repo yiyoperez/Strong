@@ -1,4 +1,4 @@
-package com.strixmc.strong.lang;
+package com.strixmc.proxystrong.lang;
 
 import java.util.List;
 

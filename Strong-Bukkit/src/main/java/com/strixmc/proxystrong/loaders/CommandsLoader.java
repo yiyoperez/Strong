@@ -1,11 +1,11 @@
-package com.strixmc.strong.loaders;
+package com.strixmc.proxystrong.loaders;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import com.strixmc.strong.Strong;
-import com.strixmc.strong.commands.StreamingCommand;
+import com.strixmc.proxystrong.Strong;
+import com.strixmc.proxystrong.commands.StreamingCommand;
 import com.strixmc.common.loader.Loader;
-import com.strixmc.strong.commands.StrongCommand;
+import com.strixmc.proxystrong.commands.StrongCommand;
 import me.fixeddev.commandflow.CommandManager;
 import me.fixeddev.commandflow.annotated.AnnotatedCommandTreeBuilder;
 import me.fixeddev.commandflow.annotated.AnnotatedCommandTreeBuilderImpl;

@@ -4,6 +4,12 @@ This plugin broadcast what is specified in its configuration.
 <br>
 Also the player can add his own message to it.
 
+
+## Badges
+![Codacy Badge](https://img.shields.io/codacy/grade/03a400bccec148ce895a986a10fd7fc3?label=Codacy%20Quality&logo=Codacy&style=for-the-badge)
+![GitHub All Releases](https://img.shields.io/github/downloads/yiyoperez/Strong/total?label=Downloads&logo=GitHub&style=for-the-badge&color=00ff62)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/yiyoperez/Strong?label=Latest%20Release&logo=GitHub&style=for-the-badge)
+![PayPal](https://img.shields.io/static/v1?label=%C2%BFDonaciones%3F&labelColor=white&color=009cde&message=Si%20eso%20seria%20gracioso&logo=PayPal&style=for-the-badge)
 ## Compiling - Download
 **¡ Disclaimer !**
 <br> 

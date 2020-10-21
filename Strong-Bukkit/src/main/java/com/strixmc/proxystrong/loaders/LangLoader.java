@@ -1,8 +1,8 @@
-package com.strixmc.strong.loaders;
+package com.strixmc.proxystrong.loaders;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import com.strixmc.strong.lang.LangUtility;
+import com.strixmc.proxystrong.lang.LangUtility;
 import com.strixmc.common.loader.Loader;
 
 @Singleton

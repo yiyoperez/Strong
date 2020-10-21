@@ -1,10 +1,10 @@
-package com.strixmc.strong.commands;
+package com.strixmc.proxystrong.commands;
 
 import com.google.inject.Inject;
 import com.strixmc.common.cache.Cache;
-import com.strixmc.strong.lang.LangUtility;
-import com.strixmc.strong.utils.Utils;
-import com.strixmc.strong.utils.settings.Settings;
+import com.strixmc.proxystrong.lang.LangUtility;
+import com.strixmc.proxystrong.utils.Utils;
+import com.strixmc.proxystrong.utils.settings.Settings;
 import me.fixeddev.commandflow.CommandContext;
 import me.fixeddev.commandflow.annotated.CommandClass;
 import me.fixeddev.commandflow.annotated.annotation.Command;
@@ -19,8 +19,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.util.UUID;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class StreamingCommand implements CommandClass {
 
@@ -31,7 +29,6 @@ public class StreamingCommand implements CommandClass {
 
   @Command(names = {"livestream", "live", "streaming", "stream", "directo"})
   public boolean command(@Sender Player player, @OptArg String link, @OptArg @Text String message, CommandContext context) {
-
     if (!player.hasPermission("strong.command.streaming")) {
       player.sendMessage(lang.getNoPermissions());
       return true;
@@ -43,16 +40,11 @@ public class StreamingCommand implements CommandClass {
     }
 
     if (link != null) {
-
       String patternString = "";
       for (String s : settings.getAllowedURLS()) {
         patternString = String.format("%s(%s)|", patternString, s);
       }
-
-      final Pattern pattern = Pattern.compile("(?i)(" + patternString + "(?!x)x)");
-      final Matcher matcher = pattern.matcher(link);
-
-      if (!matcher.find()) {
+      if (!utils.matchPattern(patternString)) {
         player.sendMessage(lang.getValidURL());
         return true;
       }
@@ -61,34 +53,15 @@ public class StreamingCommand implements CommandClass {
       textComponent.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(lang.getClickMessage(player.getName())).create()));
       textComponent.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, link));
 
-      if (!message.trim().isEmpty()) {
-        Bukkit.getOnlinePlayers().forEach(online -> {
-          lang.getHoverMessage(player.getName(), online.getName()).forEach(s -> {
-            if (settings.isCenteredMessage()) {
-              utils.sendCenteredMessage(online, s);
-            } else {
-              player.sendMessage(s);
-            }
-          });
-          if (settings.isCenteredMessage()) {
-            utils.sendCenteredMessage(online, message);
-          } else {
-            player.sendMessage(message);
+      Bukkit.getOnlinePlayers().forEach(online -> {
+        lang.getHoverMessage(player.getName(), online.getName()).forEach(s -> player.sendMessage(settings.isCenteredMessage() ? utils.centerMessage(s) : s));
+        if (!message.trim().isEmpty()) {
+          if (settings.isCustomMessage()) {
+            player.sendMessage(settings.isCenteredMessage() ? utils.centerMessage(message) : message);
           }
-          online.spigot().sendMessage(textComponent);
-        });
-      } else {
-        Bukkit.getOnlinePlayers().forEach(online -> {
-          lang.getHoverMessage(player.getName(), online.getName()).forEach(s -> {
-            if (settings.isCenteredMessage()) {
-              utils.sendCenteredMessage(online, s);
-            } else {
-              player.sendMessage(s);
-            }
-          });
-          online.spigot().sendMessage(textComponent);
-        });
-      }
+        }
+        online.spigot().sendMessage(textComponent);
+      });
 
       if (!player.hasPermission("strong.bypass.cooldown")) {
         cooldownCache.add(player.getUniqueId(), System.currentTimeMillis() + settings.getCooldownInterval() * 1000L);

@@ -1,8 +1,8 @@
-package com.strixmc.strong.utils.settings;
+package com.strixmc.proxystrong.utils.settings;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
-import com.strixmc.strong.Strong;
+import com.strixmc.proxystrong.Strong;
 import lombok.Getter;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.strixmc.strong.utils;
+package com.strixmc.proxystrong.utils;
 
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;

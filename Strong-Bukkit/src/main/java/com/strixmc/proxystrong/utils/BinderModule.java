@@ -1,4 +1,4 @@
-package com.strixmc.strong.utils;
+package com.strixmc.proxystrong.utils;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
@@ -8,13 +8,13 @@ import com.google.inject.name.Names;
 import com.strixmc.common.cache.BaseCache;
 import com.strixmc.common.cache.Cache;
 import com.strixmc.common.loader.Loader;
-import com.strixmc.strong.Strong;
-import com.strixmc.strong.lang.LangUtility;
-import com.strixmc.strong.lang.LangUtilityImpl;
-import com.strixmc.strong.loaders.CommandsLoader;
-import com.strixmc.strong.loaders.LangLoader;
-import com.strixmc.strong.utils.settings.Settings;
-import com.strixmc.strong.utils.settings.SettingsImpl;
+import com.strixmc.proxystrong.Strong;
+import com.strixmc.proxystrong.lang.LangUtility;
+import com.strixmc.proxystrong.lang.LangUtilityImpl;
+import com.strixmc.proxystrong.loaders.CommandsLoader;
+import com.strixmc.proxystrong.loaders.LangLoader;
+import com.strixmc.proxystrong.utils.settings.Settings;
+import com.strixmc.proxystrong.utils.settings.SettingsImpl;
 
 import java.util.UUID;
 
