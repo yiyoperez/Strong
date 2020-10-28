@@ -11,8 +11,8 @@
 
     <modules>
         <module>Common</module>
-        <module>Strong-Bukkit</module>
         <module>Strong-Proxy</module>
+        <module>Strong-Bukkit</module>
     </modules>
 
     <properties>
