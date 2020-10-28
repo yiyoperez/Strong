@@ -11,8 +11,8 @@
 
     <modules>
         <module>Common</module>
-        <module>Strong-Proxy</module>
         <module>Strong-Bukkit</module>
+        <module>Strong-Proxy</module>
     </modules>
 
     <properties>
@@ -20,30 +20,25 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>unnamed-snapshots</id>
+            <url>https://repo.unnamed.team/repository/unnamed-snapshots/</url>
+        </repository>
+    </repositories>
+
     <dependencies>
-        <!--Guice-->
+        <!--Trew D.I-->
         <dependency>
-            <groupId>com.google.inject</groupId>
-            <artifactId>guice</artifactId>
-            <version>4.0</version>
-            <classifier>no_aop</classifier>
-            <scope>compile</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>aopalliance</groupId>
-                    <artifactId>aopalliance</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.google.guava</groupId>
-                    <artifactId>guava</artifactId>
-                </exclusion>
-            </exclusions>
+            <groupId>me.yushust.inject</groupId>
+            <artifactId>trew</artifactId>
+            <version>0.2.3-SNAPSHOT</version>
         </dependency>
         <!--Lombok-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>LATEST</version>
+            <version>1.18.12</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

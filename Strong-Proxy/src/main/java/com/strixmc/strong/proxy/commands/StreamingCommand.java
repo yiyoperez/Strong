@@ -1,6 +1,5 @@
 package com.strixmc.strong.proxy.commands;
 
-import com.google.inject.Inject;
 import com.strixmc.common.cache.Cache;
 import com.strixmc.strong.proxy.lang.LangUtility;
 import com.strixmc.strong.proxy.utils.Utils;
@@ -14,6 +13,7 @@ import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
 
+import javax.inject.Inject;
 import java.util.UUID;
 
 public class StreamingCommand extends Command {
@@ -67,17 +67,15 @@ public class StreamingCommand extends Command {
       textComponent.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(lang.getClickMessage(player.getName())).create()));
       textComponent.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, link));
 
-      ProxyServer.getInstance().getServers().values().forEach(serverInfo -> {
-        serverInfo.getPlayers().forEach(online -> {
-          lang.getHoverMessage(player.getName(), online.getName()).forEach(s -> player.sendMessage(settings.isCenteredMessage() ? utils.centerMessage(s) : s));
-          if (!message.trim().isEmpty()) {
-            if (settings.isCustomMessage()) {
-              player.sendMessage(settings.isCenteredMessage() ? utils.centerMessage(message.toString()) : message.toString());
-            }
+      ProxyServer.getInstance().getServers().values().forEach(serverInfo -> serverInfo.getPlayers().forEach(online -> {
+        lang.getHoverMessage(player.getName(), online.getName()).forEach(s -> player.sendMessage(settings.isCenteredMessage() ? utils.centerMessage(s) : s));
+        if (!message.trim().isEmpty()) {
+          if (settings.isCustomMessage()) {
+            player.sendMessage(settings.isCenteredMessage() ? utils.centerMessage(message) : message);
           }
-          online.sendMessage(textComponent);
-        });
-      });
+        }
+        online.sendMessage(textComponent);
+      }));
 
       if (!player.hasPermission("strong.bypass.cooldown")) {
         cooldownCache.add(player.getUniqueId(), System.currentTimeMillis() + settings.getCooldownInterval() * 1000L);

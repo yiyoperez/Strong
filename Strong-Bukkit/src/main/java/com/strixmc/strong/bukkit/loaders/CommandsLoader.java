@@ -1,10 +1,8 @@
 package com.strixmc.strong.bukkit.loaders;
 
-import com.google.inject.Inject;
-import com.google.inject.Singleton;
+import com.strixmc.common.loader.Loader;
 import com.strixmc.strong.bukkit.Strong;
 import com.strixmc.strong.bukkit.commands.StreamingCommand;
-import com.strixmc.common.loader.Loader;
 import com.strixmc.strong.bukkit.commands.StrongCommand;
 import me.fixeddev.commandflow.CommandManager;
 import me.fixeddev.commandflow.annotated.AnnotatedCommandTreeBuilder;
@@ -14,7 +12,8 @@ import me.fixeddev.commandflow.annotated.part.defaults.DefaultsModule;
 import me.fixeddev.commandflow.bukkit.BukkitCommandManager;
 import me.fixeddev.commandflow.bukkit.factory.BukkitModule;
 
-@Singleton
+import javax.inject.Inject;
+
 public class CommandsLoader implements Loader {
 
   @Inject private Strong main;

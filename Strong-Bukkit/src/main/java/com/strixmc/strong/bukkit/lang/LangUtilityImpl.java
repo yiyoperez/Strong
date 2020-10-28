@@ -1,7 +1,5 @@
 package com.strixmc.strong.bukkit.lang;
 
-import com.google.inject.Inject;
-import com.google.inject.Singleton;
 import com.strixmc.strong.bukkit.Strong;
 import com.strixmc.strong.bukkit.utils.ConfigUpdater;
 import com.strixmc.strong.bukkit.utils.Utils;
@@ -11,13 +9,13 @@ import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
+import javax.inject.Inject;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-@Singleton
 public class LangUtilityImpl implements LangUtility {
 
   @Getter private String noPermissions;

@@ -1,6 +1,5 @@
 package com.strixmc.strong.bukkit.commands;
 
-import com.google.inject.Inject;
 import com.strixmc.strong.bukkit.lang.LangUtility;
 import com.strixmc.strong.bukkit.Strong;
 import com.strixmc.strong.bukkit.utils.ConfigUpdater;
@@ -11,6 +10,7 @@ import me.fixeddev.commandflow.annotated.annotation.Command;
 import me.fixeddev.commandflow.bukkit.annotation.Sender;
 import org.bukkit.entity.Player;
 
+import javax.inject.Inject;
 import java.io.File;
 import java.util.Arrays;
 

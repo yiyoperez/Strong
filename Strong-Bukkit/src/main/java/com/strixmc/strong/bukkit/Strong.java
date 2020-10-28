@@ -1,16 +1,16 @@
 package com.strixmc.strong.bukkit;
 
-import com.google.inject.Inject;
-import com.google.inject.Injector;
-import com.google.inject.name.Named;
-import com.strixmc.strong.bukkit.utils.BinderModule;
-import com.strixmc.strong.bukkit.utils.settings.Settings;
 import com.strixmc.common.loader.Loader;
+import com.strixmc.strong.bukkit.utils.BinderModule;
 import com.strixmc.strong.bukkit.utils.ConfigUpdater;
+import com.strixmc.strong.bukkit.utils.settings.Settings;
 import lombok.SneakyThrows;
+import me.yushust.inject.Injector;
 import org.bstats.bukkit.MetricsLite;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import javax.inject.Inject;
+import javax.inject.Named;
 import java.io.File;
 import java.util.Arrays;
 

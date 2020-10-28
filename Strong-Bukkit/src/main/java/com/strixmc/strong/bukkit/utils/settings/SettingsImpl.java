@@ -1,14 +1,12 @@
 package com.strixmc.strong.bukkit.utils.settings;
 
-import com.google.inject.Inject;
-import com.google.inject.Singleton;
 import com.strixmc.strong.bukkit.Strong;
 import lombok.Getter;
 
+import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
-@Singleton
 public class SettingsImpl implements Settings {
 
   @Getter private boolean customMessage;

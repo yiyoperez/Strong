@@ -1,11 +1,11 @@
 package com.strixmc.strong.bukkit.utils;
 
-import com.google.inject.Inject;
-import com.google.inject.Singleton;
 import com.strixmc.strong.bukkit.lang.LangUtility;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

@@ -1,7 +1,7 @@
 package com.strixmc.common.cache;
 
-import com.google.inject.Singleton;
 
+import javax.inject.Singleton;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 

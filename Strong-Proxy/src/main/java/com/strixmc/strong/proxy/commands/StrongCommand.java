@@ -1,12 +1,13 @@
 package com.strixmc.strong.proxy.commands;
 
-import com.google.inject.Inject;
 import com.strixmc.strong.proxy.Strong;
 import com.strixmc.strong.proxy.lang.LangUtility;
 import com.strixmc.strong.proxy.utils.settings.Settings;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
+
+import javax.inject.Inject;
 
 public class StrongCommand extends Command {
 
@@ -21,6 +22,7 @@ public class StrongCommand extends Command {
   @Override
   public void execute(CommandSender sender, String[] args) {
     if (!(sender instanceof ProxiedPlayer)) return;
+
     ProxiedPlayer player = (ProxiedPlayer) sender;
     if (!player.hasPermission("strong.command.reload")) {
       lang.getNoPermissions();

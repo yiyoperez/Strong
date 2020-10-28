@@ -1,11 +1,11 @@
 package com.strixmc.strong.proxy.utils;
 
-import com.google.inject.Inject;
-import com.google.inject.Singleton;
 import com.strixmc.strong.proxy.lang.LangUtility;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

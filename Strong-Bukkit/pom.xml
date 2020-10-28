@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>Strong-Bukkit</artifactId>
-    <version>1.0.2</version>
+    <version>1.1.0</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -44,18 +44,21 @@
             <version>1.7</version>
             <scope>compile</scope>
         </dependency>
+        <!--SpigotAPI-->
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
             <version>1.8.8-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
+        <!--Commons-->
         <dependency>
             <groupId>com.strixmc.strong</groupId>
             <artifactId>Common</artifactId>
             <version>1.0.0</version>
             <scope>compile</scope>
         </dependency>
+        <!--CommandFlow-->
         <dependency>
             <groupId>me.fixeddev</groupId>
             <artifactId>commandflow-bukkit</artifactId>
@@ -95,10 +98,6 @@
                 <version>3.2.4</version>
                 <configuration>
                     <relocations>
-                        <relocation>
-                            <pattern>javax</pattern>
-                            <shadedPattern>com.google.inject</shadedPattern>
-                        </relocation>
                         <relocation>
                             <pattern>me.fixeddev.commandflow</pattern>
                             <shadedPattern>com.strixmc.commandmanager</shadedPattern>

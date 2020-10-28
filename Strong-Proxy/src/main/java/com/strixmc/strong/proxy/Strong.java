@@ -1,15 +1,16 @@
 package com.strixmc.strong.proxy;
 
-import com.google.inject.Inject;
-import com.google.inject.Injector;
-import com.google.inject.name.Named;
 import com.strixmc.common.loader.Loader;
 import com.strixmc.strong.proxy.utils.BinderModule;
 import com.strixmc.strong.proxy.utils.FileManager;
 import com.strixmc.strong.proxy.utils.settings.Settings;
 import lombok.Getter;
+import me.yushust.inject.Injector;
 import net.md_5.bungee.api.plugin.Plugin;
 import org.bstats.bungeecord.MetricsLite;
+
+import javax.inject.Inject;
+import javax.inject.Named;
 
 public class Strong extends Plugin {
 

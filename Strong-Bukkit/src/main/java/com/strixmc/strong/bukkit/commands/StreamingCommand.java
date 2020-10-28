@@ -1,6 +1,5 @@
 package com.strixmc.strong.bukkit.commands;
 
-import com.google.inject.Inject;
 import com.strixmc.common.cache.Cache;
 import com.strixmc.strong.bukkit.lang.LangUtility;
 import com.strixmc.strong.bukkit.utils.Utils;
@@ -18,6 +17,7 @@ import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+import javax.inject.Inject;
 import java.util.UUID;
 
 public class StreamingCommand implements CommandClass {

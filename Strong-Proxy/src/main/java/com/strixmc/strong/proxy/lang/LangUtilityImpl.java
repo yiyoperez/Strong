@@ -1,17 +1,15 @@
 package com.strixmc.strong.proxy.lang;
 
-import com.google.inject.Inject;
-import com.google.inject.Singleton;
 import com.strixmc.strong.proxy.Strong;
 import com.strixmc.strong.proxy.utils.FileManager;
 import com.strixmc.strong.proxy.utils.Utils;
 import lombok.Getter;
 import lombok.SneakyThrows;
 
+import javax.inject.Inject;
 import java.util.ArrayList;
 import java.util.List;
 
-@Singleton
 public class LangUtilityImpl implements LangUtility {
 
   @Getter private String noPermissions;
