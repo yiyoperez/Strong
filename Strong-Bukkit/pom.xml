@@ -62,7 +62,7 @@
         <dependency>
             <groupId>me.fixeddev</groupId>
             <artifactId>commandflow-bukkit</artifactId>
-            <version>0.1.0-SNAPSHOT</version>
+            <version>0.1.1-SNAPSHOT</version>
             <scope>compile</scope>
             <exclusions>
                 <exclusion>

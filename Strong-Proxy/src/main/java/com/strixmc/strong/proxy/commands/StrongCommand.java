@@ -3,44 +3,46 @@ package com.strixmc.strong.proxy.commands;
 import com.strixmc.strong.proxy.Strong;
 import com.strixmc.strong.proxy.lang.LangUtility;
 import com.strixmc.strong.proxy.utils.settings.Settings;
+import me.fixeddev.commandflow.CommandContext;
+import me.fixeddev.commandflow.annotated.CommandClass;
+import me.fixeddev.commandflow.annotated.annotation.Command;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
-import net.md_5.bungee.api.plugin.Command;
 
 import javax.inject.Inject;
 
-public class StrongCommand extends Command {
+@Command(names = "strong")
+public class StrongCommand implements CommandClass {
 
   @Inject private Strong main;
   @Inject private LangUtility lang;
   @Inject private Settings settings;
 
-  public StrongCommand() {
-    super("strong");
+  @Command(names = "")
+  public boolean command(CommandSender sender, CommandContext context) {
+    String label = (String) context.getLabels().toArray()[0];
+    sender.sendMessage("Usage: /" + label + " reload");
+    return true;
   }
 
-  @Override
-  public void execute(CommandSender sender, String[] args) {
-    if (!(sender instanceof ProxiedPlayer)) return;
+  @Command(names = "reload")
+  public boolean execute(CommandSender sender) {
 
-    ProxiedPlayer player = (ProxiedPlayer) sender;
-    if (!player.hasPermission("strong.command.reload")) {
-      lang.getNoPermissions();
-      return;
-    }
-
-    if (args.length != 0) {
-      if (args[0].equalsIgnoreCase("reload")) {
-        lang.updateMessages();
-        main.getConfig().reloadFile();
-        main.getConfig().saveFile();
-        main.getConfig().reloadFile();
-        settings.updateSettings();
-
-        player.sendMessage(lang.getSuccessfullyReload());
+    if (sender instanceof ProxiedPlayer) {
+      ProxiedPlayer player = (ProxiedPlayer) sender;
+      if (!player.hasPermission("strong.command.reload")) {
+        lang.getNoPermissions();
+        return true;
       }
-    } else {
-      player.sendMessage("Usage: /" + getName() + " reload");
     }
+
+    lang.updateMessages();
+    main.getConfig().reloadFile();
+    main.getConfig().saveFile();
+    main.getConfig().reloadFile();
+    settings.updateSettings();
+
+    sender.sendMessage(lang.getSuccessfullyReload());
+    return true;
   }
 }

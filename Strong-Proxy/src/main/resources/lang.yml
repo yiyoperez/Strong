@@ -12,7 +12,9 @@ CLICK_HERE: '&aClick here to enter the live!'
 HOVER_MESSAGE:
   - ''
   - '&c[LIVE] &e&l$PLAYER &6is livestreaming!'
+  - $CLICKABLE
   - ''
+  - $MESSAGE
 SUCCESSFULLY: '&aYou have successfully sent the message to the server.'
 
 SUCCESSFULLY_RELOAD: '&aPlugin has been successfully reloaded.'
