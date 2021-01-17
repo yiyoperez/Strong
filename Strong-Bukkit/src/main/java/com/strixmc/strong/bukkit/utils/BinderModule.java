@@ -3,13 +3,9 @@ package com.strixmc.strong.bukkit.utils;
 import com.strixmc.common.cache.BaseCache;
 import com.strixmc.common.cache.Cache;
 import com.strixmc.common.loader.Loader;
+import com.strixmc.common.utils.Cooldown;
 import com.strixmc.strong.bukkit.Strong;
-import com.strixmc.strong.bukkit.lang.LangUtility;
-import com.strixmc.strong.bukkit.lang.LangUtilityImpl;
 import com.strixmc.strong.bukkit.loaders.CommandsLoader;
-import com.strixmc.strong.bukkit.loaders.LangLoader;
-import com.strixmc.strong.bukkit.utils.settings.Settings;
-import com.strixmc.strong.bukkit.utils.settings.SettingsImpl;
 import me.yushust.inject.AbstractModule;
 import me.yushust.inject.Injector;
 import me.yushust.inject.key.TypeReference;
@@ -30,14 +26,12 @@ public class BinderModule extends AbstractModule {
   protected void configure() {
     bind(Strong.class).toInstance(this.main);
 
-    bind(new TypeReference<Cache<UUID, Long>>() {
-    }).toInstance(new BaseCache<>());
+    bind(new TypeReference<Cache<UUID, Cooldown>>() {}).toInstance(new BaseCache<>());
 
-    bind(LangUtility.class).to(LangUtilityImpl.class).singleton();
-    bind(Settings.class).to(SettingsImpl.class).singleton();
+    bind(FileCreator.class).named("Config").toInstance(new FileCreator(main, "config"));
+    bind(FileCreator.class).named("Lang").toInstance(new FileCreator(main, "lang"));
 
     bind(Loader.class).named("CommandsLoader").to(CommandsLoader.class).singleton();
-    bind(Loader.class).named("LangLoader").to(LangLoader.class).singleton();
   }
 
 }

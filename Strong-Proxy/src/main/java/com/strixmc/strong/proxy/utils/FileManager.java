@@ -12,20 +12,14 @@ import java.io.InputStream;
 
 public class FileManager {
   private final Plugin plugin;
-  private final String outputFile;
   private File file;
   private Configuration configuration;
-  private String inputFile;
+  private String fileName;
 
-  public FileManager(Plugin plugin, String outputFile) {
+  public FileManager(Plugin plugin, String fileName) {
     this.plugin = plugin;
-    this.outputFile = outputFile;
-  }
-
-  public FileManager(Plugin plugin, String outputFile, String inputFile) {
-    this.plugin = plugin;
-    this.outputFile = outputFile;
-    this.inputFile = inputFile;
+    this.fileName = fileName;
+    loadDefaultFile();
   }
 
   public Configuration getFile() {
@@ -38,7 +32,7 @@ public class FileManager {
 
   public void reloadFile() {
     if (configuration == null) {
-      file = new File(plugin.getDataFolder(), outputFile);
+      file = new File(plugin.getDataFolder(), fileName);
     }
 
     try {
@@ -56,26 +50,26 @@ public class FileManager {
     }
   }
 
-  public FileManager loadDefaultFile() {
+  private FileManager loadDefaultFile() {
 
     if (!plugin.getDataFolder().exists()) {
       plugin.getDataFolder().mkdirs();
     }
 
     if (file == null) {
-      file = new File(plugin.getDataFolder(), outputFile);
+      file = new File(plugin.getDataFolder(), fileName);
     }
 
     if (!file.exists()) {
       try {
-        if (inputFile == null) {
+        if (fileName == null) {
           file.createNewFile();
           return this;
         }
 
-        InputStream inputStream = plugin.getResourceAsStream(inputFile);
+        InputStream inputStream = plugin.getResourceAsStream(fileName);
         if (inputStream == null) {
-          throw new FileNotFoundException("The file " + inputFile + "was not founded in plugin files");
+          throw new FileNotFoundException("The file " + fileName + "was not founded in plugin files");
         }
 
         Configuration inputConfig = ConfigurationProvider.getProvider(YamlConfiguration.class).load(inputStream);

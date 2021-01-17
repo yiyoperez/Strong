@@ -4,33 +4,16 @@
 # -"-"-
 
 VALID_URL: '&cPlease provide a valid URL.'
-USAGE: '/<command> <link> [message]'
+USAGE: '&cCorrect usage is: /{0} <link> [message]'
 NO_PERMISSIONS: '&cYou have no permissions to perform that.'
-COOLDOWN_ACTIVE: '&cPlease wait $INTERVAL to use this again.'
-CLICK_MESSAGE: '&aClick to come watch $PLAYER''s livestream.'
+COOLDOWN_ACTIVE: '&cPlease wait {0} to use this again.'
+CLICK_MESSAGE: '&aClick to come watch {0} livestream.'
 CLICK_HERE: '&aClick here to enter the live!'
 HOVER_MESSAGE:
   - ''
-  - '&c[LIVE] &e&l$PLAYER &6is livestreaming!'
+  - '&c[LIVE] &e&l{0} &6is livestreaming!'
   - $CLICKABLE
   - ''
   - $MESSAGE
 SUCCESSFULLY: '&aYou have successfully sent the message to the server.'
-
 SUCCESSFULLY_RELOAD: '&aPlugin has been successfully reloaded.'
-
-YEAR: ' year'
-YEARS: ' years'
-MONTH: ' month'
-MONTHS: ' months'
-WEEK: ' week'
-WEEKS: ' weeks'
-DAY: ' day'
-DAYS: ' days'
-HOUR: ' hour'
-HOURS: ' hours'
-MINUTE: ' minute'
-MINUTES: ' minutes'
-SECOND: ' second'
-SECONDS: ' seconds'
-NOW: ' a moment'

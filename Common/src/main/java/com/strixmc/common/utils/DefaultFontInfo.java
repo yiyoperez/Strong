@@ -1,4 +1,4 @@
-package com.strixmc.strong.proxy.utils;
+package com.strixmc.common.utils;
 
 public enum DefaultFontInfo {
 

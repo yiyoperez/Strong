@@ -32,7 +32,7 @@
         <dependency>
             <groupId>me.yushust.inject</groupId>
             <artifactId>trew</artifactId>
-            <version>0.2.3-SNAPSHOT</version>
+            <version>0.2.5-SNAPSHOT</version>
         </dependency>
         <!--Lombok-->
         <dependency>

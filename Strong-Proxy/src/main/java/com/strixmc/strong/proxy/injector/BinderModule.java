@@ -1,15 +1,12 @@
-package com.strixmc.strong.proxy.utils;
+package com.strixmc.strong.proxy.injector;
 
 import com.strixmc.common.cache.BaseCache;
 import com.strixmc.common.cache.Cache;
 import com.strixmc.common.loader.Loader;
+import com.strixmc.common.utils.Cooldown;
 import com.strixmc.strong.proxy.Strong;
-import com.strixmc.strong.proxy.lang.LangUtility;
-import com.strixmc.strong.proxy.lang.LangUtilityImpl;
 import com.strixmc.strong.proxy.loaders.CommandsLoader;
-import com.strixmc.strong.proxy.loaders.LangLoader;
-import com.strixmc.strong.proxy.utils.settings.Settings;
-import com.strixmc.strong.proxy.utils.settings.SettingsImpl;
+import com.strixmc.strong.proxy.utils.FileManager;
 import me.yushust.inject.AbstractModule;
 import me.yushust.inject.Injector;
 import me.yushust.inject.key.TypeReference;
@@ -30,14 +27,12 @@ public class BinderModule extends AbstractModule {
   protected void configure() {
     bind(Strong.class).toInstance(this.main);
 
-    bind(new TypeReference<Cache<UUID, Long>>() {
-    }).toInstance(new BaseCache<>());
+    bind(new TypeReference<Cache<UUID, Cooldown>>() {}).toInstance(new BaseCache<>());
 
-    bind(LangUtility.class).to(LangUtilityImpl.class).singleton();
-    bind(Settings.class).to(SettingsImpl.class).singleton();
+    bind(FileManager.class).named("Config").toInstance(new FileManager(main, "config.yml"));
+    bind(FileManager.class).named("Lang").toInstance(new FileManager(main, "lang.yml"));
 
     bind(Loader.class).named("CommandsLoader").to(CommandsLoader.class).singleton();
-    bind(Loader.class).named("LangLoader").to(LangLoader.class).singleton();
   }
 
 }

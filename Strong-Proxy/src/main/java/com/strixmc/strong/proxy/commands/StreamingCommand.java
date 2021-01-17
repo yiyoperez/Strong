@@ -1,9 +1,11 @@
 package com.strixmc.strong.proxy.commands;
 
 import com.strixmc.common.cache.Cache;
-import com.strixmc.strong.proxy.lang.LangUtility;
+import com.strixmc.common.utils.Cooldown;
+import com.strixmc.strong.proxy.Locale;
+import com.strixmc.strong.proxy.utils.FileManager;
 import com.strixmc.strong.proxy.utils.Utils;
-import com.strixmc.strong.proxy.utils.settings.Settings;
+import me.fixeddev.commandflow.CommandContext;
 import me.fixeddev.commandflow.annotated.CommandClass;
 import me.fixeddev.commandflow.annotated.annotation.Command;
 import me.fixeddev.commandflow.annotated.annotation.OptArg;
@@ -17,65 +19,70 @@ import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 import java.util.UUID;
 
 public class StreamingCommand implements CommandClass {
 
-  @Inject private Cache<UUID, Long> cooldownCache;
-  @Inject private LangUtility lang;
+  @Inject private Cache<UUID, Cooldown> cooldownCache;
+  @Inject @Named("Config") private FileManager config;
   @Inject private Utils utils;
-  @Inject private Settings settings;
 
-  @Command(names = {"livestreaming", "livestream", "streaming", "stream", "live", "directo"})
-  public boolean command(@Sender ProxiedPlayer player, @OptArg String link, @OptArg @Text String message) {
-    if (!player.hasPermission("strong.command.streaming")) {
-      player.sendMessage(lang.getNoPermissions());
-      return true;
-    }
-
-    if (cooldownCache.find(player.getUniqueId()).isPresent() && cooldownCache.find(player.getUniqueId()).get() >= System.currentTimeMillis()) {
-      player.sendMessage(lang.getCooldownActive(utils.millisToRoundedTime(cooldownCache.find(player.getUniqueId()).get() - System.currentTimeMillis())));
+  @Command(names = {"livestreaming", "livestream", "streaming", "stream", "live", "directo"}, permission = "strong.command.streaming")
+  public boolean command(@Sender ProxiedPlayer player, @me.fixeddev.commandflow.annotated.annotation.Named("link") @OptArg String link, @me.fixeddev.commandflow.annotated.annotation.Named("message") @OptArg @Text String message, CommandContext context) {
+    Cooldown cooldown = cooldownCache.getIfPresent(player.getUniqueId());
+    if (cooldown != null && !cooldown.hasExpired()) {
+      player.sendMessage(Locale.ON_COOLDOWN.format(cooldown.getTimeLeft(), cooldown.getTimerLeft()));
       return true;
     }
 
     if (link != null) {
       String patternString = "";
-      for (String s : settings.getAllowedURLS()) {
+      for (String s : config.getFile().getStringList("ALLOWED_URLS")) {
         patternString = String.format("%s(%s)|", patternString, s);
       }
       if (!utils.matchPattern(patternString, link)) {
-        player.sendMessage(lang.getValidURL());
+        player.sendMessage(Locale.VALID_URL.format());
         return true;
       }
 
-      TextComponent textComponent = new TextComponent(settings.isCenteredMessage() ? utils.centerMessage(lang.getClickHere()) : lang.getClickHere());
-      textComponent.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(lang.getClickMessage(player.getName())).create()));
+      final boolean centeredMessage = config.getFile().getBoolean("CENTER_MESSAGES");
+
+      TextComponent textComponent = new TextComponent(centeredMessage ? utils.centerMessage(Locale.CLICK_HERE.format()) : Locale.CLICK_HERE.format());
+      textComponent.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(Locale.CLICK_MESSAGE.format(player.getName())).create()));
       textComponent.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, link));
 
       ProxyServer.getInstance().getServers().values().
               forEach(serverInfo -> serverInfo.getPlayers().
-                      forEach(online -> lang.getHoverMessage(player.getName(), online.getName()).forEach(s -> {
-                        if (s.contains("$CLICKABLE")) {
-                          online.sendMessage(textComponent);
-                        } else if (s.contains("$MESSAGE")) {
-                          if (message != null) {
-                            if (settings.isCustomMessage()) {
-                              online.sendMessage(settings.isCenteredMessage() ? utils.centerMessage(message) : message);
-                            }
+                      forEach(online -> Locale.HOVER_MESSAGE.formatLines(player.getName(), online.getName()).forEach(s -> {
+                        switch (s) {
+                          case "$CLICKABLE": {
+                            online.sendMessage(textComponent);
+                            break;
                           }
-                        } else {
-                          online.sendMessage(settings.isCenteredMessage() ? utils.centerMessage(s) : s);
+                          case "$MESSAGE": {
+                            if (message != null) {
+                              if (config.getFile().getBoolean("ALLOW_CUSTOM_MESSAGE")) {
+                                online.sendMessage(centeredMessage ? utils.centerMessage(message) : message);
+                              }
+                            }
+                            break;
+                          }
+                          default: {
+                            online.sendMessage(centeredMessage ? utils.centerMessage(s) : s);
+                            break;
+                          }
                         }
                       })));
 
       if (!player.hasPermission("strong.bypass.cooldown")) {
-        cooldownCache.add(player.getUniqueId(), System.currentTimeMillis() + settings.getCooldownInterval() * 1000L);
+        cooldownCache.add(player.getUniqueId(), new Cooldown(config.getFile().getInt("COMMAND_COOLDOWN") * 1000L));
       }
-      player.sendMessage(lang.getSuccessfully());
+      player.sendMessage(Locale.SUCCESS.format());
       return true;
     }
 
-    player.sendMessage(lang.getUsage());
+    Locale.USAGE.formatLines(context.getLabels().toArray()[0]).forEach(player::sendMessage);
     return true;
   }
 }

@@ -1,48 +1,31 @@
 package com.strixmc.strong.proxy.commands;
 
+import com.strixmc.strong.proxy.Locale;
 import com.strixmc.strong.proxy.Strong;
-import com.strixmc.strong.proxy.lang.LangUtility;
-import com.strixmc.strong.proxy.utils.settings.Settings;
-import me.fixeddev.commandflow.CommandContext;
+import com.strixmc.strong.proxy.utils.FileManager;
 import me.fixeddev.commandflow.annotated.CommandClass;
 import me.fixeddev.commandflow.annotated.annotation.Command;
 import net.md_5.bungee.api.CommandSender;
-import net.md_5.bungee.api.connection.ProxiedPlayer;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 
-@Command(names = "strong")
+@Command(names = "strong", permission = "strong.command")
 public class StrongCommand implements CommandClass {
 
   @Inject private Strong main;
-  @Inject private LangUtility lang;
-  @Inject private Settings settings;
+  @Inject @Named("Config") private FileManager config;
+  @Inject @Named("Lang") private FileManager lang;
 
-  @Command(names = "")
-  public boolean command(CommandSender sender, CommandContext context) {
-    String label = (String) context.getLabels().toArray()[0];
-    sender.sendMessage("Usage: /" + label + " reload");
-    return true;
-  }
 
-  @Command(names = "reload")
+  @Command(names = "reload", permission = "strong.command.reload")
   public boolean execute(CommandSender sender) {
+    lang.reloadFile();
+    lang.saveFile();
+    config.reloadFile();
+    config.saveFile();
 
-    if (sender instanceof ProxiedPlayer) {
-      ProxiedPlayer player = (ProxiedPlayer) sender;
-      if (!player.hasPermission("strong.command.reload")) {
-        lang.getNoPermissions();
-        return true;
-      }
-    }
-
-    lang.updateMessages();
-    main.getConfig().reloadFile();
-    main.getConfig().saveFile();
-    main.getConfig().reloadFile();
-    settings.updateSettings();
-
-    sender.sendMessage(lang.getSuccessfullyReload());
+    sender.sendMessage(Locale.SUCCESS_RELOAD.format());
     return true;
   }
 }

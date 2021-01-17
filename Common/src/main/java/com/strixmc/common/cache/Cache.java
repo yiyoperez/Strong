@@ -23,4 +23,11 @@ public interface Cache<K, V> {
   default boolean exists(K id) {
     return get().containsKey(id);
   }
+
+  default V getIfPresent(K id) {
+    if (exists(id)) {
+      return get().get(id);
+    }
+    return null;
+  }
 }
